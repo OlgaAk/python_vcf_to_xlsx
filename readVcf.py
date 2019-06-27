@@ -2,6 +2,8 @@ import io
 from os import listdir, getcwd
 from os.path import isfile, join
 import openpyxl
+from tkinter import *
+from tkinter import messagebox
 
 dirpath = getcwd()
 exelCellsContentTypes = ['', 'ORG', 'ADR', 'TITLE', '', 'N', 'FN', '', '', 'TEL', 'EMAIL']
@@ -55,6 +57,27 @@ def writeToExel(data):
 
 def main():
     processVcfs()
+    root.quit()
 
-if __name__ == "__main__":
-    main()
+
+
+
+
+def quit():
+    root.quit()
+ 
+root = Tk()
+root.title("Программа для копирования контактов из визиток в таблицу")
+root.geometry("600x200")
+
+text = Label(width=500, height=200, justify=LEFT, font="Arial 12" )
+text['text']="Положите в папку визитки в формате vcf\n и таблицу exel и нажимите ОК.\n\nТаблица должна быть закрыта."
+text.pack()
+ 
+message_button = Button(text="OK", command=main, font="Arial 12")
+message_button.place(relx=.8, rely=.8, anchor="c")
+
+message_button = Button(text="Отмена", command=quit, font="Arial 12")
+message_button.place(relx=.9, rely=.8, anchor="c")
+ 
+root.mainloop()
